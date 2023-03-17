@@ -1309,6 +1309,21 @@ button:hover{
 	
 }
 
+@media (max-width: 765px) {
+  .form-reserva {
+    display: block;
+    padding: 60px;
+    margin-top: -7px;
+  }
+}
+@media (max-width: 991px) {
+  .form-reserva {
+    display: block;
+    padding: 60px;
+    margin-top: -7px;
+  }
+}
+
 
 /* 
 ---------------------------------------------
@@ -1594,7 +1609,7 @@ preloader
 
 @media (max-width: 769px) {
   .logo img {
-    width: 5em;
+    width: 6em;
   }
 }
 
