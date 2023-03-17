@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="Pousada, VipSwites, Swites, Fortaleza, Turismo, Hotꪳ, Praias, Beach Park, Unifor" />
+    <meta name="keywords" content="Pousada, VipSwites, Swites, Fortaleza, Turismo, Hotel, Praias, Beach Park, Unifor, Centro de Eventos" />
     <meta name="description" content="Pousada Vip'Swites">
     <meta name="author" content="Template Mo">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
@@ -275,30 +275,65 @@ https://templatemo.com/tm-537-art-factory
                            - Crianças a partir de 05 anos já pagam.
                         </p>
                         <p>- Para garantir sua reserva é necessário depósito da metade do valor na conta da Pousada, que será informada quando tiver certeza da hospedagem, para evitar duplicidade de depósito para a mesma unidade.</p>
+                        <p>
+                            Preencha o formulário de reserva.<br>
+                        </p>
                     </div>
                     
                 </div>
                 <br>
-                <div class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
-                    <!-- "col-lg-12 col-md-12 col-sm-12 align-self-center mobile-bottom-fix" -->
+                <div class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-top-fix">
                 <form action="processa_email.php" method="post" name="formulario">
-                    <fieldset class="form-reserva" >
+                    <fieldset class="form-reserva" class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
                         <div class="form-dados-pessoais">
-                            <!-- <form action="processa_email.php" method="post" name="formulario"> -->
-                           <fieldset>
+                           <fieldset >
                             <legend>Dados Pessoais</legend>
-                            Nome<br>
+                            *Nome<br>
                             <input type="text" name="nome" size="30" title="Digite seu nome">
                             <br />
                             E-mail <br>
                             <input type="text" name="email" size="30" title="Digite seu e-mail">
                             <br />
-                            Telefone/Whatsapp <br>
-                            <input type="text" name="telefone" size="30" title="Digite seu telefone"/> <br>
+                            *Telefone/Whatsapp <br>
+                            <input type="tel" name="telefone" size="30" title="Digite seu telefone"/> <br>
                              Endereço  <br />
                             <input type="text" name="endereco" size="30" title="Digite seu endereço"/> <br>
-                            Cidade/Estado <br /> 
+                            Cidade  <br /> 
                             <input type="text" name="cidade" size="30" title="Digite sua cidade"/> <br />
+                            UF <br /> 
+                            <select name="uf" style="width: auto">
+                                <option>--</option> 
+                                <option value="EX">Exterior</option> 
+                                <option value="AC">AC</option>
+                                <option value="AL">AL</option>
+                                <option value="AP">AP</option>
+                                <option value="AM">AM</option>
+                                <option value="BA">BA</option>
+                                <option value="CE">CE</option>
+                                <option value="DF">DF</option>
+                                <option value="ES">ES</option>
+                                <option value="GO">GO</option>
+                                <option value="MA">MA</option>
+                                <option value="MS">MS</option>
+                                <option value="MT">MT</option>
+                                <option value="MG">MG</option>
+                                <option value="PA">PA</option>
+                                <option value="PB">PB</option>
+                                <option value="PR">PR</option>
+                                <option value="PE">PE</option>
+                                <option value="PI">PI</option>
+                                <option value="RJ">RJ</option>
+                                <option value="RN">RN</option>
+                                <option value="RS">RS</option>
+                                <option value="RO">RO</option>
+                                <option value="RR">RR</option>
+                                <option value="SC">SC</option>
+                                <option value="SP">SP</option>
+                                <option value="SE">SE</option>
+                                <option value="TO">TO</option>
+                                
+                            </select><br>
+                           
                            </fieldset>
                                                                    
                         </div>
@@ -306,7 +341,7 @@ https://templatemo.com/tm-537-art-factory
                         <div class="form-quarto">  
                             <fieldset>
                                 <legend>Dados da Reserva</legend>
-                                Tipo de Quarto <br>
+                                *Tipo de Quarto <br>
                             <select name="quarto" style="width: auto">
                                 <option>Escolha o tipo</option> 
                                 <option value="Individual">Individual</option> 
@@ -316,27 +351,29 @@ https://templatemo.com/tm-537-art-factory
                                 <option value="Qu&aacute;druplo">Qu&aacute;druplo</option> 
                                 <option value="Sextuplo">Sextuplo</option> 
                             </select><br>
-                            Quantidade de Pessoas <br>
-                            <input name="quantidade" type="number" size="10" /> <br />
-                            Chegada (Dia/Mês/Ano - Horário)<br />
+                            *Quantidade de Pessoas <br>
+                            <input name="quantidade" type="number" size="10"/> <br />
+                            *Chegada (Dia/Mês/Ano - Horário)<br />
                             <input name="chegada" type="date" /> <input name="chegada" type="time"/> <br>
-                            Saída (Dia/Mês/Ano - Horário)<br />
+                            *Saída (Dia/Mês/Ano - Horário)<br />
                             <input name="saída" type="date" /> <input name="saída" type="time"/> <br>
                             Mensagem <br />
                             <textarea name="mensagem" rows="5" cols="30" title="Digite sua mensagem"></textarea>
+                            
                             </fieldset>                 
-                            <br />
+                            <br /> 
+
                             <button type="submit" name="enviar" value="Enviar">Enviar</button>&nbsp;&nbsp;
-                            <button type="reset" name="limpar" value="Limpar">Limpar</button><br>
+                            <button type="reset" name="limpar" value="Limpar">Limpar</button><br>                           
         
                         </div>
-                    </fieldset>
+                        
+                    </fieldset>                    
                 
                 </form>
-                </div>
-            
                 
-               
+                </div>
+                              
             </div>
             <div class="row">
                 <p class="left-text" id="text-pvs-second">
@@ -345,50 +382,9 @@ https://templatemo.com/tm-537-art-factory
             </div>
         </div>
     </section>
+    
+    <!-- ***** Reserva End ***** -->
 
-
-
-    <!--  <section class="section" id="reserva">
-        <div class="container">
-            <div class="row">
-               <div style="height: 500px" class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-bottom-fix" >
-                <div class="col-lg-4 col-md-12 col-sm-12"
-                    data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
-                    <img src="assets/images/icon_pousada.png" height="200px" width="200px" class="rounded img-fluid d-block mx-auto"
-                        alt="">
-                </div>
-                <div class="col-lg-8 col-md-12 col-sm-12 align-self-center mobile-top-fix">
-                    <div class="section-name">
-                        <h2 class="section-title">Reservas</h2>
-                        
-                    </div>
-
-
-                    <div class="left-text" id="text-pvs" style="text-align: justify; margin-left: 0">
-                        <p>- A diária inicia e termina sempre ao meio-dia, com alguma tolerância a combinar.<br />                         
-                        </p>
-                        <p>
-                            - Crianças a partir de 05 anos já pagam.
-                        </p>
-                        <p>
-                           - Para garantir sua reserva é necessário depósito da metade do valor na conta da Pousada, que será informada quando tiver certeza da hospedagem, para evitar duplicidade de depósito para a mesma unidade.
-                        </p>
-                    </div>
-                </div>
-               </div>
-            </div>
-            <div class="row">
-                <p class="left-text" id="text-pvs-second">
-                    
-                </p>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="hr"></div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
 
     <!-- ***** Localization Start ***** -->
@@ -399,11 +395,11 @@ https://templatemo.com/tm-537-art-factory
                 <div style="height: 500px" class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
                     <div class="center-heading">
                         <h2 class="section-title">Localização</h2>
-                        <p>Rua Auristela Maia Farias, 1325 (Antiga Rua Galáxia)</p>
+                        <p>Rua Auristela Maia Farias, 1325</p>
                         <p>Luciano Cavalcante - Fortaleza</p>
                         <p>CEP: 60811-100</p>
-                        <a href="mailto: contato@pousadavipswites.com.br" target="_blank"
-                            class="contato-email">contato@pousadavipswites.com.br</a>
+                        <a href="mailto: sac@pousadavipswites.com.br" target="_blank"
+                            class="contato-email">sac@pousadavipswites.com.br</a>
                         <!-- <div class="contatos">
                             <img src="./assets/images/telefone-icon.png" alt="Telefone">
                             <a href="tel: 85 3038 2168" target="_blank" rel="noreferrer">85 3038 2168</a>
@@ -426,47 +422,8 @@ https://templatemo.com/tm-537-art-factory
     <!-- ***** Localization End ***** -->
 
 
-   
-
-    <!-- <section class="section" id="reserva">
-        <div class="container">
-            <div class="row">
-                <div style="height: 600px" class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
-                    <div class="center-heading">
-                        <div class="col-lg-8 col-md-12 col-sm-12 align-self-center mobile-top-fix">
-                            <div class="section-name">
-                                <h2 class="section-title">Reservas</h2>
-                                
-        
-                                
-                            </div>
-                         </div>
-                        <p>A diária inicia e termina sempre ao meio-dia, com alguma tolerância a combinar.</p>
-                        <p>Crianças a partir de 05 anos já pagam.</p>
-                        <p>Para garantir sua reserva é necessário depósito da metade do valor na conta da Pousada, que será informada quando tiver certeza da hospedagem, para evitar duplicidade de depósito para a mesma unidade.</p>
-                        <a href="mailto: contato@pousadavipswites.com.br" target="_blank"
-                            class="contato-email">contato@pousadavipswites.com.br</a>
-                       
-                        <div class="contatos">
-                            <img src="./assets/images/whatsapp-icon.png" alt="Telefone">
-                            <a href="https://api.whatsapp.com/send?phone=+5585997828618&amp;text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es"
-                                target="_blank" rel="noreferrer">85 99782 8618</a>
-                        </div>
-                    </div>
-                    
-                        <br>
-                </div>
-                
-
-            </div>
-
-        </div>
-    </section> -->
-    <!-- ***** Reserva End ***** -->
-
-
     <!-- ***** Footer Start ***** -->
-    <footer style="margin-top: 8em; text-align: center;">
+    <footer style="margin-top: 12em; text-align: center;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12">
