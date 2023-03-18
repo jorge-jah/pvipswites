@@ -288,6 +288,22 @@ button.main-button:hover {
   text-align: center;
 }
 
+.contatos a,
+.whatsapp-box a {
+  margin: 0 5px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #234d9b;
+}
+
+.contatos a:hover,
+.contato-email:hover,
+.whatsapp-box a:hover {
+  opacity: 0.8;
+}
+
+
+
 /* 
 ---------------------------------------------
 header
@@ -1331,7 +1347,7 @@ contact
 --------------------------------------------- 
 */
 
-#contact-us .container-fluid {
+/* #contact-us .container-fluid {
   padding-right: 0px;
   padding-left: 0px;
   overflow-x: hidden;
@@ -1407,7 +1423,8 @@ contact
     rgba(0, 136, 232, 1) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0088e8', endColorstr='#0088e8', GradientType=1 );
-}
+} */
+
 
 @media (max-width: 765px) {
   .contact-form {
@@ -1456,6 +1473,56 @@ contact
 .contact-form ::placeholder {
   color: #fff;
 }
+
+.datahora{
+  display: flex;
+}
+
+.state{
+  width: 200px;;
+}
+
+.button-form{
+  background-color: #F59D7E;
+  border: none;
+}
+
+.button-form:hover{
+  background-color: #DF5727;
+}
+
+/* #btnEnviar {
+  margin-top: 20px;
+}
+*/
+
+#enviando {
+  display: none;
+  font-weight: bold;
+} 
+
+
+
+#contact-form {
+  margin: 0 auto 30px auto;
+  background-color: #e6e6e6;
+  /* background-color: #00b6c7; */
+  /* background-color: #F2D1C5; */
+  max-width: 600px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  border-radius: 10px;
+}
+
+#contact-form label {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
 
 /* 
 ---------------------------------------------
@@ -1665,4 +1732,41 @@ preloader
 
 .center-heading p {
   font-size: 20px;
+}
+
+.whatsapp-box-flutuante {
+  position: fixed;
+  right: 15px;
+  bottom: 40px;
+  z-index: 1000;
+}
+
+.whatsapp-icon-consulta-flutuante {
+  width: 60px;
+  animation: myAnim 1s ease-in-out 0s infinite alternate forwards;
+}
+
+.whatsapp-icon-consulta-flutuante:hover {
+  opacity: 0.9;
+}
+
+li.whatsapp-box {
+  width: 60px;
+  margin-right: 20px;
+}
+
+li.whatsapp-box a {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+img.whatsapp-icon,
+img.whatsapp-icon-consulta {
+  width: 35px;
+  transition: 0.2s;
+}
+
+img.whatsapp-icon:hover {
+  width: 45px;
 }
