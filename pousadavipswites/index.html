@@ -25,6 +25,63 @@ https://templatemo.com/tm-537-art-factory
     <link rel="stylesheet" type="text/css" href="assets/css/templatemo-art-factory.css">
     <link rel="stylesheet" type="text/css" href="assets/css/owl-carousel.css">
 
+    <script src="./assets/js/sweetalert2.all.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            <!-- emailjs.init("user_85fVDeJk2lYbPZ3nXEMZh"); --> 
+            emailjs.init("user_iHlBTnMi2Sa0zGXJd8GQD");
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var checados = [];
+            $(".preferencia").click(function (e) {
+                checados = [];
+                $.each($("input[name='preferencia[]']:checked"), function () {
+                    checados.push($(this).val());
+                });
+            });
+            document.getElementById('contact-form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                var error = document.getElementById('msgErrorPreferencia');
+
+                if (checados.length < 1) {
+                    error.innerHTML = '<p>Por favor, selecione uma ou mais preferência de contato</p>';
+                    return;
+                } else {
+                    error.innerHTML = '';
+                }
+
+                $("#btnEnviar").css('display', 'none');
+                $('#enviando').css('display', 'flex');
+                checados.join(", ");
+
+                // these IDs from the previous steps
+                emailjs.sendForm('service_bn6lejf', 'template_qnzumfn', this)
+                    .then(function () {
+                        checados = [];
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Enviado! Em breve entraremos em contato com você.',
+                            showConfirmButton: true,
+                            timer: 5000
+                        })
+                        $("#btnEnviar").css('display', 'block');
+                        $('#enviando').css('display', 'none');
+                    }, function (error) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Algo deu errado!',
+                            showConfirmButton: true,
+                            timer: 5000
+                        })
+                    })
+            });
+        }
+    </script>
+
 </head>
 
 <body>
@@ -56,7 +113,7 @@ https://templatemo.com/tm-537-art-factory
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#about">Sobre</a></li>
                             <li class="scroll-to-section"><a href="#services">A Pousada</a></li>
-                            <li class="scroll-to-section"><a href="#reserva">Reservas</a></li>
+                            <li class="scroll-to-section"><a href="#reserva">Reservas/Contato</a></li>
                             <li class="scroll-to-section"><a href="#localizacao">Localização</a></li>
                         </ul>
                         <a class='menu-trigger'>
@@ -164,12 +221,14 @@ https://templatemo.com/tm-537-art-factory
 
 
                     <div class="left-text" id="text-pvs" style="text-align: justify; margin-left: 0">
-                        <p>A Pousada Vip'Swites tem o prazer em hospedá-lo. Com uma estrutura que traz para você todo conforto e bem estar que você merece, fazendo você se sentir em casa.
+                        <p>A Pousada Vip'Swites tem o prazer em hospedá-lo. </p>                    
+                            <p>Com uma estrutura que traz para você todo conforto e bem estar que você merece, fazendo você se sentir em casa.
                             Estamos situados a 300m do CENTRO DE EVENTOS, UNIFOR (Universidade de Fortaleza), Fórum, Shopping Iguatemi Bosque e de fácil acesso às melhores praias cearenses.<br />                         
                         </p>
                         <p>
                             Temos um ambiente familiar, limpo, higienizado e organizado, com instalações projetadas visando sempre o seu bem-estar. Com: Sala de Estar, Sala de TV, Serviço de Quarto, Locadora de Veículos e Programas para encaixarmos você nos melhores passeios de Fortaleza. Ônibus de luxo passando diariamente em frente à Pousada, levando e trazendo nossos hóspedes com segurança, com guia turístico.
                         </p>
+                        <p>A Pousada Vip'Swites foi imaginada e criada com o firme propósito de tornar seus dias em nossa terra os mais agradáveis e proveitosos possíveis.</p>
                     </div>
                 </div>
             </div>
@@ -264,12 +323,12 @@ https://templatemo.com/tm-537-art-factory
                 </div>
                 <div class="col-lg-8 col-md-12 col-sm-12 align-self-center mobile-top-fix">
                     <div class="section-name">
-                        <h2 class="section-title">Reservas</h2>
+                        <h2 class="section-title">Reservas e Contato</h2>
                         
                     </div>
 
                     <div class="left-text" id="text-pvs" style="text-align: justify; margin-left: 0">
-                        <p>- A diária inicia e termina sempre ao meio-dia, com alguma tolerância a combinar.<br />                         
+                        <p>- A diária inicia e termina sempre ao meio-dia, com alguma tolerância a combinar.          
                         </p>
                         <p>
                            - Crianças a partir de 05 anos já pagam.
@@ -283,7 +342,194 @@ https://templatemo.com/tm-537-art-factory
                 </div>
                 <br>
                 <div class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-top-fix">
-                <form action="processa_email.php" method="post" name="formulario">
+                    <div class="center-heading">
+                        <form id="contact-form">
+                            <h2 class="section-title">Faça sua reserva ou fale com a gente.</h2>
+                            <h6>Mande-nos sugestões, dúvidas e elogios.</h6>
+                            <br>
+                            <div class="form-group col-md-12">
+                                <label for="exampleFormControlInput0">Nome:</label>
+                                <input name="usuario" type="text" class="form-control" id="exampleFormControlInput0"
+                                    placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="exampleFormControlInput1">E-mail:</label>
+                                <input name="email" type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="" required>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="inputFone" class="control-label">Telefone/Whatsapp</label>
+                                <input name="telefone" type="tel" class="form-control" id="inputFone"
+                                    placeholder="(00) 0000-0000" onkeypress="mask(this, mphone);"
+                                    onblur="mask(this, mphone);" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="exampleFormControlInput2">Endereço:</label>
+                                <input type="text" name="endereco" class="form-control" id="exampleFormControlInput2" required>                                  
+                           
+                            </div>
+                            <div class="form-group col-md-12">
+                              
+                                <label for="exampleFormControlInput3">Cidade  /  Estado</label>
+                                <!-- <label for="exampleFormControlSelect0"> Estado</label> -->
+                                <div class="datahora">
+                                <input type="text" name="cidade" class="form-control" id="exampleFormControlInput3" required>
+                                <!-- <label for="exampleFormControlSelect0">UF</label> -->
+                                <select name="uf" class="form-control state" id="exampleFormControlSelect0" required>
+                                    <option>--</option> 
+                                    <option value="EX">Exterior</option> 
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Ri Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                               </div>
+                                
+                                
+                            </div>
+                            <!-- <div class="form-group col-md-12">
+                                <label for="exampleFormControlSelect0">UF</label>
+                                <select name="uf" class="form-control" id="exampleFormControlSelect0" required>
+                                    <option>--</option> 
+                                    <option value="EX">Exterior</option> 
+                                    <option value="AC">AC</option>
+                                    <option value="AL">AL</option>
+                                    <option value="AP">AP</option>
+                                    <option value="AM">AM</option>
+                                    <option value="BA">BA</option>
+                                    <option value="CE">CE</option>
+                                    <option value="DF">DF</option>
+                                    <option value="ES">ES</option>
+                                    <option value="GO">GO</option>
+                                    <option value="MA">MA</option>
+                                    <option value="MS">MS</option>
+                                    <option value="MT">MT</option>
+                                    <option value="MG">MG</option>
+                                    <option value="PA">PA</option>
+                                    <option value="PB">PB</option>
+                                    <option value="PR">PR</option>
+                                    <option value="PE">PE</option>
+                                    <option value="PI">PI</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="RN">RN</option>
+                                    <option value="RS">RS</option>
+                                    <option value="RO">RO</option>
+                                    <option value="RR">RR</option>
+                                    <option value="SC">SC</option>
+                                    <option value="SP">SP</option>
+                                    <option value="SE">SE</option>
+                                    <option value="TO">TO</option>
+                                </select>
+                            </div> -->
+                        
+                            <br>
+
+                        <h6>*Dados da Reserva*</h6>
+                        <br>
+                        <div class="form-group col-md-12">
+                            <label for="exampleFormControlSelect0">*Tipo de Quarto</label>
+                            <select name="quarto" class="form-control" id="exampleFormControlSelect0" required>
+                            <option>Escolha o tipo</option> 
+                                <option value="Individual">Individual</option> 
+                                <option value="Duplo">Duplo</option> 
+                                <option value="Triplo">Triplo</option> 
+                                <option value="Qu&aacute;druplo">Qu&aacute;druplo</option> 
+                                <option value="Qu&aacute;druplo">Qu&aacute;druplo</option> 
+                                <option value="Sextuplo">Sextuplo</option> 
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="exampleFormControlInput3">*Quantidade de Pessoas</label>
+                            <input type="number" name="quantidade" class="form-control" id="exampleFormControlInput3" required>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="exampleFormControlInput3">*Chegada (Dia/Mês/Ano - Horário)</label>
+                            <div class="datahora"> 
+                                <input type="date" name="chegada" class="form-control" id="exampleFormControlInput3" required>
+                                <input type="time" name="chegada" class="form-control" id="exampleFormControlInput3" required>
+                            </div>
+                           
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="exampleFormControlInput3">*Saída (Dia/Mês/Ano - Horário)</label>
+                           <div class="datahora">
+                                <input type="date" name="saida" class="form-control" id="exampleFormControlInput3" required>
+                                <input type="time" name="saida" class="form-control" id="exampleFormControlInput3" required>
+                           </div>
+
+                        </div>
+
+                    
+                        <div class="form-group col-md-12">
+                                <label for="exampleFormControlInput3">Mensagem</label><br>                         
+                            <textarea name="mensagem" class="form-control" rows="5" title="Digite sua mensagem"></textarea>
+                        </div>
+                            <!-- <div class="form-group col-md-12 preferenciaBox">
+                                <div for="exampleFormControlSelect4" class="preferenciaTitle">Preferência de
+                                    contato:</div>
+                               
+                                <label>
+                                    <input type="checkbox" name="preferencia[]" class="preferencia" value="E-mail" />E-mail
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="preferencia[]" class="preferencia"
+                                        value="Ligação" />Ligação<br />
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="preferencia[]" class="preferencia"
+                                        value="Whatsapp" />Whatsapp<br />
+                                </label>
+                                <div id="msgErrorPreferencia"></div>
+                            </div> -->
+                            <!-- <input type="hidden" name="contact_number">
+                                <label>Name</label>
+                                <input type="text" name="user_name">
+                                <label>Email</label>
+                                <input type="email" name="user_email">
+                                <label>Message</label>
+                                <textarea name="message"></textarea> -->
+                            
+                        <div class="datahora">
+                            <input id="btnEnviar" type="submit" class="button-form btn btn-primary col-md-6" value="Enviar" />&nbsp;&nbsp;
+                            <input id="btnLimpar" type="reset" class="button-form btn btn-primary col-md-6" value="Limpar" />&nbsp;&nbsp;
+                            <!-- <button type="reset" name="limpar" value="Limpar">Limpar</button><br>       -->
+                            
+                        </div>
+                        <div id="enviando">Enviando...</div>        
+                            
+                        </form>
+                    </div>
+
+                    </div>
+
+                <!-- <form action="processa_email.php" method="post" name="formulario">
                     <fieldset class="form-reserva" class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-bottom-fix">
                         <div class="form-dados-pessoais">
                            <fieldset >
@@ -370,7 +616,7 @@ https://templatemo.com/tm-537-art-factory
                         
                     </fieldset>                    
                 
-                </form>
+                </form> -->
                 
                 </div>
                               
@@ -453,6 +699,38 @@ https://templatemo.com/tm-537-art-factory
 
     <!-- Global Init -->
     <script src="assets/js/custom.js"></script>
+
+    <script>
+        function mask(o, f) {
+            setTimeout(function () {
+                var v = mphone(o.value);
+                if (v != o.value) {
+                    o.value = v;
+                }
+            }, 1);
+        }
+
+        function mphone(v) {
+            var r = v.replace(/\D/g, "");
+            r = r.replace(/^0/, "");
+            if (r.length > 10) {
+                r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+            } else if (r.length > 5) {
+                r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+            } else if (r.length > 2) {
+                r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+            } else if (r.length > 1) {
+                r = r.replace(/^(\d*)/, "($1");
+            }
+            return r;
+        }
+    </script>
+
+    <div class="whatsapp-box-flutuante"><a
+            href="https://api.whatsapp.com/send?phone=+5585988254742&amp;text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es."
+            target="_blank"><img class="whatsapp-icon-consulta-flutuante" src="./assets/images/whatsapp-icon.png"
+                alt="Whatsapp"></a>
+    </div>
 
 </body>
 
