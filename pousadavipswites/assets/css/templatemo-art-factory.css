@@ -1591,7 +1591,7 @@ preloader
 */
 #preloader {
   overflow: hidden;
-  background-image: linear-gradient(145deg, #00b4c6 0%, #0088e8 100%);
+  background-image: linear-gradient(145deg, #F59D7E 0%, #DF5727 100%);
   left: 0;
   right: 0;
   top: 0;
