@@ -27,60 +27,9 @@ https://templatemo.com/tm-537-art-factory
 
     <script src="./assets/js/sweetalert2.all.min.js"></script>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            <!-- emailjs.init("user_85fVDeJk2lYbPZ3nXEMZh"); --> 
-            emailjs.init("user_iHlBTnMi2Sa0zGXJd8GQD");
-        })();
-    </script>
-    <script type="text/javascript">
-        window.onload = function () {
-            var checados = [];
-            $(".preferencia").click(function (e) {
-                checados = [];
-                $.each($("input[name='preferencia[]']:checked"), function () {
-                    checados.push($(this).val());
-                });
-            });
-            document.getElementById('contact-form').addEventListener('submit', function (event) {
-                event.preventDefault();
-                var error = document.getElementById('msgErrorPreferencia');
-
-                if (checados.length < 1) {
-                    error.innerHTML = '<p>Por favor, selecione uma ou mais preferência de contato</p>';
-                    return;
-                } else {
-                    error.innerHTML = '';
-                }
-
-                $("#btnEnviar").css('display', 'none');
-                $('#enviando').css('display', 'flex');
-                checados.join(", ");
-
-                // these IDs from the previous steps
-                emailjs.sendForm('service_bn6lejf', 'template_qnzumfn', this)
-                    .then(function () {
-                        checados = [];
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Enviado! Em breve entraremos em contato com você.',
-                            showConfirmButton: true,
-                            timer: 5000
-                        })
-                        $("#btnEnviar").css('display', 'block');
-                        $('#enviando').css('display', 'none');
-                    }, function (error) {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Algo deu errado!',
-                            showConfirmButton: true,
-                            timer: 5000
-                        })
-                    })
-            });
-        }
-    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript" src="assets/js/send-form.js"></script>
+    
 
 </head>
 
@@ -343,30 +292,30 @@ https://templatemo.com/tm-537-art-factory
                 <br>
                 <div class="col-lg-12 col-md-12 col-sm-12 align-self-center mobile-top-fix">
                     <div class="center-heading">
-                        <form id="contact-form">
+                        <form id="contact-form" name="formulario_reserva">
                             <h2 class="section-title">Faça sua reserva ou fale com a gente.</h2>
                             <h6>Mande-nos sugestões, dúvidas e elogios.</h6>
                             <br>
                             <div class="form-group col-md-12">
                                 <label for="exampleFormControlInput0">Nome:</label>
-                                <input name="usuario" type="text" class="form-control" id="exampleFormControlInput0"
+                                <input name="from_name" type="text" class="form-control" id="from_name"
                                     placeholder="" required>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="exampleFormControlInput1">E-mail:</label>
-                                <input name="email" type="email" class="form-control" id="exampleFormControlInput1"
+                                <input name="email" type="email" class="form-control" id="email"
                                     placeholder="" required>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="inputFone" class="control-label">Telefone/Whatsapp</label>
-                                <input name="telefone" type="tel" class="form-control" id="inputFone"
+                                <input name="tel" type="tel" class="form-control" id="tel"
                                     placeholder="(00) 0000-0000" onkeypress="mask(this, mphone);"
                                     onblur="mask(this, mphone);" required>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="exampleFormControlInput2">Endereço:</label>
-                                <input type="text" name="endereco" class="form-control" id="exampleFormControlInput2" required>                                  
+                                <input type="text" name="endereco" class="form-control" id="endereco" >                                  
                            
                             </div>
                             <div class="form-group col-md-12">
@@ -374,9 +323,9 @@ https://templatemo.com/tm-537-art-factory
                                 <label for="exampleFormControlInput3">Cidade  /  Estado</label>
                                 <!-- <label for="exampleFormControlSelect0"> Estado</label> -->
                                 <div class="datahora">
-                                <input type="text" name="cidade" class="form-control" id="exampleFormControlInput3" required>
+                                <input type="text" name="cidade" class="form-control" id="cidade" >
                                 <!-- <label for="exampleFormControlSelect0">UF</label> -->
-                                <select name="uf" class="form-control state" id="exampleFormControlSelect0" required>
+                                <select name="uf" class="form-control state" id="uf">
                                     <option>--</option> 
                                     <option value="EX">Exterior</option> 
                                     <option value="AC">Acre</option>
@@ -398,7 +347,7 @@ https://templatemo.com/tm-537-art-factory
                                     <option value="PE">Pernambuco</option>
                                     <option value="PI">Piauí</option>
                                     <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Ri Grande do Norte</option>
+                                    <option value="RN">Rio Grande do Norte</option>
                                     <option value="RS">Rio Grande do Sul</option>
                                     <option value="RO">Rondônia</option>
                                     <option value="RR">Roraima</option>
@@ -408,51 +357,24 @@ https://templatemo.com/tm-537-art-factory
                                     <option value="TO">Tocantins</option>
                                 </select>
                                </div>
-                                
+                            
                                 
                             </div>
-                            <!-- <div class="form-group col-md-12">
-                                <label for="exampleFormControlSelect0">UF</label>
-                                <select name="uf" class="form-control" id="exampleFormControlSelect0" required>
-                                    <option>--</option> 
-                                    <option value="EX">Exterior</option> 
-                                    <option value="AC">AC</option>
-                                    <option value="AL">AL</option>
-                                    <option value="AP">AP</option>
-                                    <option value="AM">AM</option>
-                                    <option value="BA">BA</option>
-                                    <option value="CE">CE</option>
-                                    <option value="DF">DF</option>
-                                    <option value="ES">ES</option>
-                                    <option value="GO">GO</option>
-                                    <option value="MA">MA</option>
-                                    <option value="MS">MS</option>
-                                    <option value="MT">MT</option>
-                                    <option value="MG">MG</option>
-                                    <option value="PA">PA</option>
-                                    <option value="PB">PB</option>
-                                    <option value="PR">PR</option>
-                                    <option value="PE">PE</option>
-                                    <option value="PI">PI</option>
-                                    <option value="RJ">RJ</option>
-                                    <option value="RN">RN</option>
-                                    <option value="RS">RS</option>
-                                    <option value="RO">RO</option>
-                                    <option value="RR">RR</option>
-                                    <option value="SC">SC</option>
-                                    <option value="SP">SP</option>
-                                    <option value="SE">SE</option>
-                                    <option value="TO">TO</option>
-                                </select>
-                            </div> -->
+                            <div class="form-group col-md-12">
+                                <label for="exampleFormControlInput7">Mensagem</label><br>                         
+                            <textarea name="message" class="form-control" rows="5" title="Digite sua mensagem" id="message"></textarea>
+                            </div>                       
                         
                             <br>
 
+                        
+                        <!-- <h2 class="section-title">Quer fazer uma reserva?</h2> -->
+                       
                         <h6>*Dados da Reserva*</h6>
                         <br>
                         <div class="form-group col-md-12">
-                            <label for="exampleFormControlSelect1">*Tipo de Quarto</label>
-                            <select name="quarto" class="form-control" id="exampleFormControlSelect1" required>
+                            <label for="exampleFormControlSelect1">Tipo de Quarto</label>
+                            <select name="quarto" class="form-control" id="quarto">
                             <option>Escolha o tipo</option> 
                                 <option value="Individual">Individual</option> 
                                 <option value="Duplo">Duplo</option> 
@@ -464,33 +386,30 @@ https://templatemo.com/tm-537-art-factory
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="exampleFormControlInput4">*Quantidade de Pessoas</label>
-                            <input type="number" name="quantidade" class="form-control" id="exampleFormControlInput4" required>
+                            <label for="exampleFormControlInput4">Quantidade de Pessoas</label>
+                            <input type="number" name="quantidade" class="form-control" id="quantidade" >
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="exampleFormControlInput5">*Chegada (Dia/Mês/Ano - Horário)</label>
+                            <label for="exampleFormControlInput5">Chegada (Dia/Mês/Ano - Horário)</label>
                             <div class="datahora"> 
-                                <input type="date" name="chegada" class="form-control" id="exampleFormControlInput5" required>
-                                <input type="time" name="chegada" class="form-control" id="exampleFormControlInput5" required>
+                                <input type="date" name="chegada" class="form-control" id="chegada" >
+                                <input type="time" name="chegada" class="form-control" id="chegada1" >
                             </div>
                            
 
                         </div>
                         <div class="form-group col-md-12">
-                            <label for="exampleFormControlInput6">*Saída (Dia/Mês/Ano - Horário)</label>
+                            <label for="exampleFormControlInput6">Saída (Dia/Mês/Ano - Horário)</label>
                            <div class="datahora">
-                                <input type="date" name="saida" class="form-control" id="exampleFormControlInput6" required>
-                                <input type="time" name="saida" class="form-control" id="exampleFormControlInput6" required>
+                                <input type="date" name="saida" class="form-control" id="saida" >
+                                <input type="time" name="saida" class="form-control" id="saida1" >
                            </div>
 
                         </div>
 
                     
-                        <div class="form-group col-md-12">
-                                <label for="exampleFormControlInput7">Mensagem</label><br>                         
-                            <textarea name="mensagem" class="form-control" rows="5" title="Digite sua mensagem" id="exampleFormControlInput7"></textarea>
-                        </div>
+                       
                             <!-- <div class="form-group col-md-12 preferenciaBox">
                                 <div for="exampleFormControlSelect4" class="preferenciaTitle">Preferência de
                                     contato:</div>
